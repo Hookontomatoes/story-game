@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>AI版ストーリー</title>
+  <script src="https://unpkg.com/@mlc-ai/web-llm"></script>
+</head>
+<body>
+  <h1>AIストーリー・デモ</h1>
+  <p>AIが即興で物語を展開します。入力してください。</p>
+
+  <textarea id="userInput" rows="3" cols="60"></textarea><br>
+  <button id="runBtn">実行</button>
+
+  <h3>出力:</h3>
+  <div id="output" style="white-space: pre-wrap; border:1px solid #ccc; padding:10px; width:60%;"></div>
+
+  <script>
+    const output = document.getElementById("output");
+    const userInput = document.getElementById("userInput");
+    const runBtn = document.getElementById("runBtn");
+
+    let chat = null;
+
+    async function init() {
+      output.innerText = "モデルを読み込んでいます… (少し時間がかかります)";
+      chat = await webllm.createChatSession("gemma-2b-it-q4f16_1-MLC");
+      output.innerText = "モデル読み込み完了。入力してください。";
+    }
+
+    runBtn.onclick = async () => {
+      if (!chat) {
+        output.innerText = "モデルがまだ読み込まれていません。";
+        return;
+      }
+      const prompt = userInput.value;
+      output.innerText = "実行中…";
+      const reply = await chat.generate(prompt);
+      output.innerText = reply;
+    };
+
+    init();
+  </script>
+</body>
+</html>
