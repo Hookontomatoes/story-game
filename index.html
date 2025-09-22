@@ -7,14 +7,14 @@
 
   <!-- ★CSP：外部JS・WASM・evalを許可（インラインJSは使わない） -->
   <meta http-equiv="Content-Security-Policy" content="
-    default-src 'self';
-    script-src 'self' https://unpkg.com 'unsafe-eval' 'wasm-unsafe-eval';
-    style-src  'self' 'unsafe-inline';
-    img-src    'self' data:;
-    connect-src 'self' https://unpkg.com https://huggingface.co https://*.hf.co;
-    worker-src 'self' blob:;
-    child-src  blob:;
-  ">
+  default-src 'self';
+  script-src 'self' https://unpkg.com https://cdn.jsdelivr.net 'unsafe-eval' 'wasm-unsafe-eval';
+  style-src  'self' 'unsafe-inline';
+  img-src    'self' data:;
+  connect-src 'self' https://unpkg.com https://cdn.jsdelivr.net https://huggingface.co https://*.hf.co;
+  worker-src 'self' blob:;
+  child-src  blob:;
+">
 
   <style>
     body { font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans JP', sans-serif; max-width: 760px; margin: 24px auto; padding: 0 12px; line-height: 1.7; }
@@ -51,7 +51,7 @@
   <div id="out"></div>
 
   <!-- WebLLM（UMD） -->
-  <script src="https://unpkg.com/@mlc-ai/web-llm/dist/index.min.js"></script>
+  <script src="https://jsDelivr.com/@mlc-ai/web-llm/dist/index.min.js"></script>
   <!-- あなたのJS（インライン禁止、外部読み込みにする） -->
   <script src="main.js"></script>
 </body>
