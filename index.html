@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+  <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' https://unpkg.com 'unsafe-eval' 'wasm-unsafe-eval';
+               worker-src 'self' blob:;
+               connect-src 'self' https://unpkg.com https://huggingface.co https://*.hf.co;
+               style-src 'self' 'unsafe-inline';
+               img-src 'self' data:;">
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AIストーリー（WebLLM）</title>
@@ -39,7 +47,7 @@
   <div id="out"></div>
 
   <!-- WebLLM（UMD版） -->
-  <script src="https://unpkg.com/@mlc-ai/web-llm/dist/index.min.js"></script>
+  <script src="https://unpkg.com/@mlc-ai/web-llm/dist/index.min.js" crossorigin="anonymous"></script>
   <script>
     const $ = (id) => document.getElementById(id);
     const env = $("env"), statusEl = $("status"), out = $("out"), inp = $("inp");
