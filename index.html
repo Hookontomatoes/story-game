@@ -9,6 +9,18 @@
   <h1>AIストーリー・デモ</h1>
   <p>AIが即興で物語を展開します。入力してください。</p>
 
+  <div id="env-check" style="padding:12px;border:1px solid #f3c36b;background:#fff8e5;border-radius:8px;display:none">
+  この端末ではAI実行に必要な <b>WebGPU</b> が使えません。
+  <br>Chrome / Edge / 新しいSafari / 新しいFirefox などの最新版、かつHTTPSでお試しください。
+</div>
+<script>
+  (function(){
+    const warn = document.getElementById('env-check');
+    if (!window.isSecureContext || !navigator.gpu) warn.style.display = 'block';
+  })();
+</script>
+
+
   <textarea id="userInput" rows="3" cols="60"></textarea><br>
   <button id="runBtn">実行</button>
 
